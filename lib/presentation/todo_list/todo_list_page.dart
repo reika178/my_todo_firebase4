@@ -11,7 +11,7 @@ class TodoListPage extends StatelessWidget {
       create: (_) => TodoListModel()..fetchTodos(),
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Todo'),
+          title: Text('Todo List'),
         ),
         body: Consumer<TodoListModel>(
           builder: (context, model, child) {

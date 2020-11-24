@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_todo_app_firebase4/presentation/login/login_model.dart';
+import 'package:my_todo_app_firebase4/presentation/todo_list/todo_list_page.dart';
 import 'package:provider/provider.dart';
 
 class LoginPage extends StatelessWidget {
@@ -44,7 +45,12 @@ class LoginPage extends StatelessWidget {
                     onPressed: () async {
                       try {
                         await model.login();
-                        _showDialog(context, 'ログインしました');
+                        await Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(builder: (context) {
+                          return TodoListPage();
+                        }),
+                        );
+                        // _showDialog(context, 'ログインしました');
                       } catch(e) {
                         _showDialog(context, e.toString());
                       }
