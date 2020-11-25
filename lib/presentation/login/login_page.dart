@@ -17,46 +17,49 @@ class LoginPage extends StatelessWidget {
         ),
         body: Consumer<LoginModel>(
           builder: (context, model, child) {
-            return Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                children: <Widget>[
-                  TextField(
-                    decoration: InputDecoration(
-                      hintText: 'email'
-                    ),
-                    controller: mailController,
-                    onChanged: (text) {
-                      model.mail = text;
-                    }
-                  ),
-                  TextField(
-                    decoration: InputDecoration(
-                      hintText: 'password'
-                    ),
-                    obscureText: true,
-                    controller: passwordController,
-                    onChanged: (text) {
-                      model.password = text;
-                    }
-                  ),
-                  RaisedButton(
-                    child: Text('Login'),
-                    onPressed: () async {
-                      try {
-                        await model.login();
-                        await Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(builder: (context) {
-                          return TodoListPage();
-                        }),
-                        );
-                        // _showDialog(context, 'ログインしました');
-                      } catch(e) {
-                        _showDialog(context, e.toString());
+            return Center(
+              child: Container(
+                padding: EdgeInsets.all(8.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    TextField(
+                      decoration: InputDecoration(
+                        hintText: 'email'
+                      ),
+                      controller: mailController,
+                      onChanged: (text) {
+                        model.mail = text;
                       }
-                    },
-                  ),
-                ],
+                    ),
+                    TextField(
+                      decoration: InputDecoration(
+                        hintText: 'password'
+                      ),
+                      obscureText: true,
+                      controller: passwordController,
+                      onChanged: (text) {
+                        model.password = text;
+                      }
+                    ),
+                    RaisedButton(
+                      child: Text('Login'),
+                      onPressed: () async {
+                        try {
+                          await model.login();
+                          await Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(builder: (context) {
+                            return TodoListPage();
+                          }),
+                          );
+                          // _showDialog(context, 'ログインしました');
+                        } catch(e) {
+                          _showDialog(context, e.toString());
+                        }
+                      },
+                    ),
+                  ],
+                ),
               ),
             );
           },
