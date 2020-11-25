@@ -19,10 +19,11 @@ class SignUpPage extends StatelessWidget {
             return Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   TextField(
                     decoration: InputDecoration(
-                      hintText: 'email'
+                      hintText: 'mail adress'
                     ),
                     controller: mailController,
                     onChanged: (text) {
@@ -41,10 +42,11 @@ class SignUpPage extends StatelessWidget {
                   ),
                   RaisedButton(
                     child: Text('OK'),
+                    color: Colors.blue[100],
                     onPressed: () async {
                       try {
                         await model.signUp();
-                        _showDialog(context, '登録しました');
+                        _showDialog(context, 'Signup!');
                       } catch(e) {
                         _showDialog(context, e.toString());
                       }

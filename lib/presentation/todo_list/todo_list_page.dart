@@ -39,9 +39,7 @@ class TodoListPage extends StatelessWidget {
               child: Card(
                 child: ListTile(
                   title: Text(todo.title),
-                  trailing: IconButton(
-                    icon: Icon(Icons.edit),
-                    onPressed: () async {
+                  onTap: () async {
                       await Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => AddTodoPage(
@@ -51,8 +49,7 @@ class TodoListPage extends StatelessWidget {
                       ),
                     );
                     model.fetchTodos();
-                    }
-                  ),
+                    },
                 ),
               ),
             ),

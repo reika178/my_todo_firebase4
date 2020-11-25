@@ -11,10 +11,10 @@ class SignUpModel extends ChangeNotifier {
 
   Future signUp() async {
     if (mail.isEmpty) {
-      throw ('メールアドレスを入力してください');
+      throw ('Please enter your e-mail address');
     }
     if (password.isEmpty) {
-      throw ('パスワードを入力してください');
+      throw ('Please enter your password');
     }
     final FirebaseUser user = (await _auth.createUserWithEmailAndPassword(
       email: mail,

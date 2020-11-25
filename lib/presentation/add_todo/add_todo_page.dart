@@ -26,6 +26,7 @@ class AddTodoPage extends StatelessWidget {
             return Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   TextField(
                     controller: textEditingController,
@@ -34,7 +35,8 @@ class AddTodoPage extends StatelessWidget {
                     }
                   ),
                   RaisedButton(
-                    child: Text(isUpdate ? 'Update' : 'Todo'),
+                    color: Colors.blue[200],
+                    child: Text(isUpdate ? 'Update' : 'Add'),
                     onPressed: () async {
                       if (isUpdate) {
                         await updateTodo(model, context);
@@ -48,7 +50,6 @@ class AddTodoPage extends StatelessWidget {
             );
           },
         ),
-        
       ),
     );
   }
@@ -60,7 +61,7 @@ class AddTodoPage extends StatelessWidget {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text('保存しました！'),
+            title: Text('Add！'),
             actions: <Widget>[
               FlatButton(
                 child: Text('OK'),

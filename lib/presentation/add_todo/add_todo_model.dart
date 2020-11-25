@@ -8,7 +8,7 @@ class AddTodoModel extends ChangeNotifier {
 
   Future addTodoToFirebase() async {
     if (todoTitle.isEmpty) {
-      throw ('タイトルを入力してください');
+      throw ('Please enter todo');
     }
     Firestore.instance.collection('todo').add(
       {

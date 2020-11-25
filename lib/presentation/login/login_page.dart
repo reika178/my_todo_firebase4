@@ -43,6 +43,7 @@ class LoginPage extends StatelessWidget {
                       }
                     ),
                     RaisedButton(
+                      color: Colors.blue[200],
                       child: Text('Login'),
                       onPressed: () async {
                         try {
@@ -52,7 +53,6 @@ class LoginPage extends StatelessWidget {
                             return TodoListPage();
                           }),
                           );
-                          // _showDialog(context, 'ログインしました');
                         } catch(e) {
                           _showDialog(context, e.toString());
                         }

@@ -9,10 +9,10 @@ class LoginModel extends ChangeNotifier {
 
   Future login() async {
     if (mail.isEmpty) {
-      throw ('メールアドレスを入力してください');
+      throw ('Please enter your e-mail address');
     }
     if (password.isEmpty) {
-      throw ('パスワードを入力してください');
+      throw ('Please enter your password');
     }
     final result = await _auth.signInWithEmailAndPassword(
       email: mail,

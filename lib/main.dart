@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_todo_app_firebase4/presentation/login/login_page.dart';
 import 'package:my_todo_app_firebase4/presentation/signup/signup_page.dart';
-import 'package:provider/provider.dart';
-import 'presentation/main/main_model.dart';
 
 void main() {
   runApp(MyApp());
@@ -14,41 +12,38 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
-      home: ChangeNotifierProvider<MainModel>(
-        create: (_) => MainModel(),
-        child: Scaffold(
-          appBar: AppBar(
-            title: Text('My Todo App'),
-          ),
-          body: Consumer<MainModel>(builder: (context, model, child) {
-              return Center(
-                child: Column(
-                  children: [
-                    RaisedButton(
-                      child: Text('SignUp'),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => SignUpPage()),
-                        );
-                      }
-                    ),
-                    RaisedButton(
-                      child: Text('Login'),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => LoginPage()),
-                        );
-                      }
-                    ),
-                  ],
-                ),
-              );
-            }
-          ),
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('My Todo App'),
         ),
-      )
-    );
+        body: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  RaisedButton(
+                    color: Colors.blue[100],
+                    child: Text('SignUp'),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => SignUpPage()),
+                      );
+                    }
+                  ),
+                  RaisedButton(
+                    color: Colors.blue[200],
+                    child: Text('Login'),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => LoginPage()),
+                      );
+                    }
+                  ),
+                ],
+              ),
+            )
+        ),
+      );
   }
 }
