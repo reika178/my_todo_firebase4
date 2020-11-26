@@ -32,6 +32,7 @@ class TodoListPage extends StatelessWidget {
           builder: (context, model, child) {
             final todos = model.todos;
             final listTiles = todos.map((todo) => Dismissible(
+              background: Container(color: Colors.red[200]),
               key: Key(todo.documentID),
               onDismissed: (direction) async {
                 await deleteTodo(context, model, todo);
