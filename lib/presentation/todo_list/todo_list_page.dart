@@ -15,84 +15,96 @@ class TodoListPage extends StatelessWidget {
         appBar: AppBar(
           title: Text('My Todo'),
           actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.close),
-            onPressed: () async {
-              await FirebaseAuth.instance.signOut();
-              await Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) {
-                  return LoginPage();
-                }),
+            IconButton(
+              icon: Icon(Icons.close),
+              onPressed: () async {
+                await FirebaseAuth.instance.signOut();
+                await Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(builder: (context) {
+                    return LoginPage();
+                  }),
+                );
+              },
+            ),
+          ],
+        ),
+        body: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('images/hyde.jpeg'),
+            ),
+          ),
+          child: Consumer<TodoListModel>(
+            builder: (context, model, child) {
+              final todos = model.todos;
+              final listTiles = todos
+                  .map(
+                    (todo) => Dismissible(
+                      background: Container(color: Colors.red[200]),
+                      key: Key(todo.documentID),
+                      onDismissed: (direction) async {
+                        await deleteTodo(context, model, todo);
+                      },
+                      child: Card(
+                        child: ListTile(
+                          title: Text(todo.title),
+                          onTap: () async {
+                            await Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => AddTodoPage(
+                                  todo: todo,
+                                ),
+                                fullscreenDialog: true,
+                              ),
+                            );
+                            model.fetchTodos();
+                          },
+                        ),
+                      ),
+                    ),
+                  )
+                  .toList();
+              return ListView(
+                children: listTiles,
               );
             },
           ),
-        ],
         ),
-        body: Consumer<TodoListModel>(
-          builder: (context, model, child) {
-            final todos = model.todos;
-            final listTiles = todos.map((todo) => Dismissible(
-              background: Container(color: Colors.red[200]),
-              key: Key(todo.documentID),
-              onDismissed: (direction) async {
-                await deleteTodo(context, model, todo);
-              },
-              child: Card(
-                child: ListTile(
-                  title: Text(todo.title),
-                  onTap: () async {
-                      await Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => AddTodoPage(
-                          todo: todo,
-                        ),
-                        fullscreenDialog: true,
-                      ),
-                    );
-                    model.fetchTodos();
-                    },
+        floatingActionButton:
+            Consumer<TodoListModel>(builder: (context, model, child) {
+          return FloatingActionButton(
+            child: Icon(Icons.add),
+            onPressed: () async {
+              await Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => AddTodoPage(),
+                  fullscreenDialog: true,
                 ),
-              ),
-            ),
-          ).toList();
-            return ListView(
-              children: listTiles,
-            );
-          },
-        ),
-        floatingActionButton: Consumer<TodoListModel>(builder: (context, model, child) {
-            return FloatingActionButton(
-              child: Icon(Icons.add),
-              onPressed: () async {
-                await Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => AddTodoPage(),
-                   fullscreenDialog: true,
-                   ),
-                );
-                model.fetchTodos();
-              },
-            );
-          }
-        ),
+              );
+              model.fetchTodos();
+            },
+          );
+        }),
       ),
     );
   }
 
   Future deleteTodo(
     BuildContext context,
-    TodoListModel model, 
+    TodoListModel model,
     Todo todo,
   ) async {
     try {
       await model.deleteTodo(todo);
       await model.fetchTodos();
-    } catch(e) {
+    } catch (e) {
       await _showDialog(context, e.toString());
       print(e.toString());
+    }
   }
 
-  }
   Future _showDialog(
     BuildContext context,
     String title,

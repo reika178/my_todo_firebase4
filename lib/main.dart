@@ -28,6 +28,9 @@ class Home extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Image.asset(
+              'images/hyde.jpeg'
+            ) ,
             RaisedButton(
               color: Colors.blue[100],
               child: Text('SignUp'),
