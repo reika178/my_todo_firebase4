@@ -16,7 +16,7 @@ class TodoListPage extends StatelessWidget {
           title: Text('My Todo'),
           actions: <Widget>[
             IconButton(
-              icon: Icon(Icons.close),
+              icon: Icon(Icons.settings),
               onPressed: () async {
                 await FirebaseAuth.instance.signOut();
                 await Navigator.of(context).pushReplacement(
