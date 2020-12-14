@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:my_todo_app_firebase4/domain/todo.dart';
 import 'package:my_todo_app_firebase4/presentation/add_todo/add_todo_page.dart';
 import 'package:my_todo_app_firebase4/presentation/login/login_page.dart';
+import 'package:my_todo_app_firebase4/presentation/settings/settings_page.dart';
 import 'package:my_todo_app_firebase4/presentation/todo_list/todo_list_model.dart';
 import 'package:provider/provider.dart';
 
@@ -17,14 +18,20 @@ class TodoListPage extends StatelessWidget {
           actions: <Widget>[
             IconButton(
               icon: Icon(Icons.settings),
-              onPressed: () async {
-                await FirebaseAuth.instance.signOut();
-                await Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (context) {
-                    return LoginPage();
-                  }),
+              // onPressed: () async {
+              //   await FirebaseAuth.instance.signOut();
+              //   await Navigator.of(context).pushReplacement(
+              //     MaterialPageRoute(builder: (context) {
+              //       return LoginPage();
+              //     }),
+              //   );
+              // },
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SettingsPage()),
                 );
-              },
+              }
             ),
           ],
         ),
@@ -46,7 +53,9 @@ class TodoListPage extends StatelessWidget {
                         await deleteTodo(context, model, todo);
                       },
                       child: Card(
+                        color: Colors.transparent,
                         child: ListTile(
+                          tileColor: Colors.white38,
                           title: Text(todo.title),
                           onTap: () async {
                             await Navigator.push(
