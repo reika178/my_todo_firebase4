@@ -1,10 +1,11 @@
-import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:my_todo_app_firebase4/domain/todo.dart';
 import 'package:my_todo_app_firebase4/presentation/add_todo/add_todo_page.dart';
-import 'package:my_todo_app_firebase4/presentation/login/login_page.dart';
+// import 'package:my_todo_app_firebase4/presentation/login/login_page.dart';
 import 'package:my_todo_app_firebase4/presentation/settings/settings_page.dart';
 import 'package:my_todo_app_firebase4/presentation/todo_list/todo_list_model.dart';
+import 'package:my_todo_app_firebase4/presentation/settings/settings_page.dart';
 import 'package:provider/provider.dart';
 
 class TodoListPage extends StatelessWidget {
@@ -38,6 +39,7 @@ class TodoListPage extends StatelessWidget {
         body: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
+              // image: _image,
               image: AssetImage('images/hyde.jpeg'),
             ),
           ),
