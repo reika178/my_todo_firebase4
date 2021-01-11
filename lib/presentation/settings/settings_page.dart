@@ -27,7 +27,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text('応援画像入れる'),
+                  Text('画像入れる'),
                   Switch(
                     value: _active,
                     // activeColor: Colors.orange,
@@ -51,6 +51,7 @@ class _SettingsPageState extends State<SettingsPage> {
                  tooltip: 'Pick Image From Gallery',
                  child: Icon(Icons.photo_library),
                ),
+               /*
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -78,6 +79,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   // onSubmitted: _submission,
                 ),
               )
+              */
             ],
           ),
         ));
