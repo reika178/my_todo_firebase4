@@ -38,8 +38,8 @@ class TodoListPage extends StatelessWidget {
         ),
         body: Container(
           decoration: BoxDecoration(
+            // Image.file(_image),
             image: DecorationImage(
-              // image: _image,
               image: AssetImage('images/hyde.jpeg'),
             ),
           ),
