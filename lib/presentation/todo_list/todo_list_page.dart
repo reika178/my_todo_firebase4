@@ -37,9 +37,10 @@ class TodoListPage extends StatelessWidget {
           ],
         ),
         body: Container(
+          // child: Image.file(myImage)
           decoration: BoxDecoration(
-            // Image.file(_image),
             image: DecorationImage(
+              // image: AssetImage(myImage),
               image: AssetImage('images/hyde.jpeg'),
             ),
           ),
